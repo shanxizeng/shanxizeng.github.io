@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>编译原理-Aho-1</title>
+      <link href="/2022/06/30/compilers_principles_aho_1/"/>
+      <url>/2022/06/30/compilers_principles_aho_1/</url>
+      
+        <content type="html"><![CDATA[<p>编译器(compiler)就是将用一种语言编写的程序转化为等价的用目标语言编写的程序的一个程序。解释器(interpreter)是另一种常见的语言处理器，并不通过翻译的方式生成目标程序，而是直接利用用户提供的输入执行源程序中指定的操作。编译器生成的程序通常要比解释器快很多，但解释器的错误诊断效果通常比编译器更好。</p><p>一个源程序可能被分割为多个部分，并存放在独立的文件中。把源程序聚合在一起的任务由预处理器(preprocessor)独立完成。</p><p>将经过预处理器处理的程序作为输入传递给一个编译器，一般由编译器转为一个汇编语言程序作为输出，并由汇编器(assembler)处理生成可重定位的机器代码。</p><p>在大型的程序中，可重定位的机器代码通常要和其他的可重定位目标文件以及库文件连接在一起，形成真正运行的代码。外部内存地址的问题由链接器(linker)解决，最后加载器(loader)把所有可执行文件放到内存中执行。</p><h2 id="编译器的结构"><a href="#编译器的结构" class="headerlink" title="编译器的结构"></a>编译器的结构</h2><p>编译器将源程序映射为语义上等价的目标程序。映射的过程分为两个方面：分析(analysis)和综合(synthesis)。</p><h3 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h3><p>通常来说，编译的第一个步骤称为词法分析(lexical analysis)或扫描(scanning)。词法分析器读入源程序，将它们组成为有意义的词素(lexeme)序列。每个词素由一个词法单元(token)<code>&lt;token-name, attribute-value&gt;</code>构成。token-name是下一个步骤中要用到的符号，attribute-value是与符号表相关的信息。</p><h3 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h3><p>编译的第二个步骤称为语法分析(syntax analysis)或解析(parsing)。语法分析器利用词法分析器得到的词法单元的第一个分量创建树形的中间表示，如语法树(syntax tree)。给出了词法分析器产生的词法单元流的语法结构。</p><h3 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h3><p>语义分析器(semantic analysis)使用语法树和符号表中的信息来检查程序是否和语言定义的语义一致，并将这些信息存放在语法树或符号表中。同时收集类型信息，进行类型检查(type checking)。</p><h3 id="中间代码生成"><a href="#中间代码生成" class="headerlink" title="中间代码生成"></a>中间代码生成</h3><p>在语法分析和语义分析完成后，编译器一般会生成一个明确的低级的或类机器语言的中间表示。可以将这个中间表示看作在一个虚拟的机器上执行的程序。这个中间表示一般要满足易于生成并能较为轻松地翻译为目标语言。</p><h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><p>机器无关的代码优化通过改进中间代码，以期望生成更好的目标代码。此外还有机器相关的优化。</p><p>代码优化必须满足下面的设计目标：</p><ol><li><p>优化必须是正确的，不能改变被编译程序的含义。</p></li><li><p>优化必须能够改善很多程序的性能。</p></li><li><p>优化需要的时间必须保持在合理的区间内。</p></li><li><p>所需要的工程方面的工作必须是可管理的。</p></li></ol><h3 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h3><p>代码生成器以中间形式作为输入，映射到目标语言。如果目标语言是机器语言，那么就要为每个变量选择寄存器或内存地址。代码生成的一个至关重要的方面是合理分配寄存器以存放变量的值。</p><h3 id="符号表"><a href="#符号表" class="headerlink" title="符号表"></a>符号表</h3><p>编译器在编译的过程中要记录源程序中使用的变量和过程的各种属性。这些由符号表来完成。</p><p>以上中的若干个步骤进行组合称为一趟(pass)。</p><h2 id="程序设计语言"><a href="#程序设计语言" class="headerlink" title="程序设计语言"></a>程序设计语言</h2><p>分类方式：</p><p>按代际来划分：第一代：机器语言；第二代：汇编语言；第三代：Fortran,Cobol,Lisp,C,C++,Java等高级语言；第四代是为特定应用设计的语言如用于生成报告的NOMAD，用于数据库查询的SQL等；第五代指基于逻辑和约束的语言，如Prolog和OPS5。</p><p>将程序中指明如何完成一个计算任务的语言称为强制式(imperative)语言，如C,C++,Java等；将程序中指明要进行哪些计算任务的语言称为声明式(declarative)语言，如Haskell,Prolog等。</p><p>冯·诺依曼语言(von Neumann language)是指以冯·诺伊曼计算机体系结构为计算模型的语言。</p><p>面向对象语言(object-oriented language)指的是支持面向对象编程的语言。</p><p>脚本语言(scripting language)是具有高层次运算符的解释型语言。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编译原理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编译原理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>形式语义学简介</title>
       <link href="/2022/06/29/formal_semantics/"/>
       <url>/2022/06/29/formal_semantics/</url>
